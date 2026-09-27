@@ -1,0 +1,549 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Phạm Hải Anh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Be+Vietnam+Pro:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F1F2EC; --surface:#E7EAE1; --ink:#1A1E1B; --ink-2:#434B45; --muted:#636B64;
+  --line:#D3D8CC; --accent:#4B6A48; --accent-soft:#DDE5D6; --sand:#A88C5F;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --gutter:clamp(16px,4vw,48px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111412; --surface:#181C19; --ink:#E6E9E2; --ink-2:#B6BDB4; --muted:#8E968D;
+    --line:#29302A; --accent:#9DBA96; --accent-soft:#1D271D; --sand:#CDB58A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111412; --surface:#181C19; --ink:#E6E9E2; --ink-2:#B6BDB4; --muted:#8E968D;
+  --line:#29302A; --accent:#9DBA96; --accent-soft:#1D271D; --sand:#CDB58A; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--bg)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:var(--gutter)}
+.mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* progress */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;padding-top:env(safe-area-inset-top,0px);pointer-events:none}
+.progress i{display:block;height:2px;background:var(--accent);transform-origin:0 50%;transform:scaleX(0)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;transition:border-color .4s var(--ease)}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
+.mark{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.02em;text-decoration:none;
+  display:inline-flex;align-items:center;gap:10px;font-variation-settings:'wdth' 100;transition:font-variation-settings .5s var(--ease)}
+.mark:hover{font-variation-settings:'wdth' 125}
+.mark .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.links a{text-decoration:none;font-size:14px;color:var(--ink-2);position:relative;padding-block:6px}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--ink);
+  transform:scaleX(0);transform-origin:100% 50%;transition:transform .45s var(--ease-out)}
+.links a:hover{color:var(--ink)}
+.links a:hover::after{transform:scaleX(1);transform-origin:0 50%}
+@media (max-width:640px){.links li:not(:last-child){display:none}}
+
+/* hero */
+.hero{padding-block:clamp(56px,11vh,120px) clamp(56px,9vh,96px);position:relative}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:clamp(28px,5vh,48px)}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2);
+  padding:7px 14px 7px 12px;border:1px solid var(--line);border-radius:999px}
+.pulse{position:relative;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.pulse::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 2.4s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.6}80%,100%{transform:scale(3.2);opacity:0}}
+
+.name{font-family:var(--display);font-size:clamp(3.4rem,14.5vw,11.5rem);line-height:.88;letter-spacing:-.035em;
+  margin:0;font-weight:400;user-select:none}
+.name .row{display:block;overflow:hidden;padding-bottom:.06em}
+.name .row + .row{margin-top:-.02em}
+.ch{display:inline-block;--w:100;--g:560;font-variation-settings:'wdth' var(--w),'wght' var(--g);
+  transition:font-variation-settings .6s var(--ease-out);will-change:font-variation-settings}
+.ch.sp{width:.24em}
+.name .row:last-child .ch{color:var(--accent)}
+.intro .ch{animation:letterIn 1.25s var(--ease-out) backwards;animation-delay:calc(var(--i) * 55ms + 120ms)}
+@keyframes letterIn{
+  from{opacity:0;transform:translateY(70%);font-variation-settings:'wdth' 62,'wght' 150}
+  to{opacity:1;transform:none;font-variation-settings:'wdth' 100,'wght' 560}
+}
+.hero-bottom{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-top:clamp(36px,6vh,64px);align-items:end}
+.lede{grid-column:1 / span 6;font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:var(--ink-2);margin:0;max-width:52ch}
+.lede strong{color:var(--ink);font-weight:500}
+.hero-meta{grid-column:9 / span 4;display:grid;gap:10px;justify-items:end;text-align:right}
+.hero-meta .clock{font-family:var(--mono);font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.scroll-cue{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:13px;color:var(--ink-2)}
+.scroll-cue .stem{width:1px;height:28px;background:var(--line);position:relative;overflow:hidden}
+.scroll-cue .stem::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--ink);animation:drip 2s var(--ease) infinite}
+@keyframes drip{to{top:100%}}
+.fade-up{animation:fadeUp 1s var(--ease-out) backwards;animation-delay:var(--dl,900ms)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+@media (max-width:760px){
+  .lede{grid-column:1 / -1}
+  .hero-meta{grid-column:1 / -1;justify-items:start;text-align:left;grid-auto-flow:column;justify-content:space-between;align-items:center}
+}
+
+/* sections */
+section.block{padding-block:clamp(72px,12vh,140px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(36px,6vh,64px)}
+.sec-head .mono{grid-column:1 / span 3;padding-top:.9em}
+.sec-head h2{grid-column:4 / -1;margin:0;font-family:var(--display);font-weight:500;
+  font-size:clamp(2rem,4.6vw,3.6rem);line-height:1.04;letter-spacing:-.025em;text-wrap:balance;font-variation-settings:'wdth' 92}
+.sec-head h2 em{font-style:normal;color:var(--accent)}
+.mask{display:block;overflow:hidden;padding-bottom:.08em}
+.mask > span{display:block}
+.js .mask > span{transform:translateY(108%);transition:transform 1.1s var(--ease-out)}
+.js .in .mask > span,.js .mask.in > span{transform:none}
+.js .mask:nth-child(2) > span{transition-delay:.08s}
+.js .mask:nth-child(3) > span{transition-delay:.16s}
+@media (max-width:760px){.sec-head .mono,.sec-head h2{grid-column:1 / -1}.sec-head .mono{padding-top:0}}
+
+.js [data-reveal]{opacity:0;transform:translateY(22px);
+  transition:opacity .9s var(--ease),transform 1s var(--ease-out);transition-delay:calc(var(--d,0) * 90ms)}
+.js [data-reveal].in{opacity:1;transform:none}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.about-copy{grid-column:4 / span 5;display:grid;gap:18px;color:var(--ink-2)}
+.about-copy p{margin:0;max-width:60ch}
+.about-copy p:first-child{font-size:clamp(18px,1.6vw,21px);color:var(--ink);line-height:1.55}
+.facts{grid-column:10 / span 3;margin:0;display:grid;gap:0;align-content:start}
+.facts div{display:grid;gap:2px;padding-block:14px;border-top:1px solid var(--line)}
+.facts div:last-child{border-bottom:1px solid var(--line)}
+.facts dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;font-size:15px;color:var(--ink)}
+@media (max-width:900px){.about-copy{grid-column:1 / span 7}.facts{grid-column:8 / -1}}
+@media (max-width:640px){.about-copy,.facts{grid-column:1 / -1}}
+
+/* flow */
+.flow-wrap{margin-top:clamp(56px,9vh,96px)}
+.flow-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+.flow{display:flex;align-items:stretch;padding:clamp(20px,3vw,32px);background:var(--surface);border-radius:4px}
+.node{flex:1 1 0;min-width:0;display:grid;gap:10px;align-content:start;padding:18px;border:1px solid var(--line);
+  border-radius:3px;background:var(--bg);transition:border-color .5s var(--ease),transform .5s var(--ease-out)}
+.node svg{width:22px;height:22px;stroke:var(--ink-2);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .5s var(--ease)}
+.node b{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.node span{font-size:14px;line-height:1.45;color:var(--ink)}
+.wire{flex:0 0 clamp(24px,5vw,64px);position:relative;align-self:center;height:1px;background:var(--line)}
+.wire::after{content:"";position:absolute;top:-3px;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:0}
+.flow.run .node{animation:nodeOn 4.8s linear infinite}
+.flow.run .wire::after{animation:travel 4.8s linear infinite}
+.flow .n1{animation-delay:0s}
+.flow .w1::after{animation-delay:.6s}
+.flow .n2{animation-delay:1.4s}
+.flow .w2::after{animation-delay:2s}
+.flow .n3{animation-delay:2.8s}
+.flow .w3::after{animation-delay:3.4s}
+.flow .n4{animation-delay:4.2s}
+@keyframes nodeOn{0%{border-color:var(--line)}4%,13%{border-color:var(--accent);transform:translateY(-3px)}20%,100%{border-color:var(--line);transform:none}}
+@keyframes travel{0%{left:0;opacity:0}2%{opacity:1}15%{left:calc(100% - 7px);opacity:1}17%,100%{left:calc(100% - 7px);opacity:0}}
+@media (max-width:760px){
+  .flow{flex-direction:column}
+  .wire{flex:0 0 28px;width:1px;height:auto;align-self:flex-start;margin-left:28px}
+  .wire::after{left:-3px;top:0}
+  @keyframes travel{0%{top:0;opacity:0}2%{opacity:1}15%{top:calc(100% - 7px);opacity:1}17%,100%{top:calc(100% - 7px);opacity:0}}
+}
+
+/* projects */
+.projects{list-style:none;margin:0;padding:0}
+.proj{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding-block:clamp(26px,4vh,38px);position:relative}
+.proj::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line)}
+.proj::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--ink);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform 1.2s var(--ease-out)}
+.proj.in::after{transform:scaleX(1);transition-delay:calc(var(--d,0) * 90ms + .1s)}
+.projects:last-child .proj:last-child{border-bottom:1px solid var(--line)}
+.proj .kind{grid-column:1 / span 3;display:flex;align-items:center;gap:10px}
+.proj .kind i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:background .4s var(--ease),transform .4s var(--ease-out)}
+.proj h3{grid-column:4 / span 5;margin:0;font-family:var(--display);font-weight:500;font-size:clamp(22px,2.4vw,30px);
+  line-height:1.15;letter-spacing:-.015em;font-variation-settings:'wdth' 96;
+  transition:transform .6s var(--ease-out),font-variation-settings .6s var(--ease-out)}
+.proj p{grid-column:4 / span 5;margin:8px 0 0;color:var(--ink-2);max-width:54ch}
+.proj .tags{grid-column:10 / span 3;grid-row:1 / span 2;display:flex;flex-wrap:wrap;gap:6px;align-content:start;justify-content:flex-end}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);white-space:nowrap}
+.proj-main{grid-column:4 / span 6}
+.proj-main h3,.proj-main p{grid-column:auto}
+@media (hover:hover){
+  .proj:hover h3{transform:translateX(10px);font-variation-settings:'wdth' 108}
+  .proj:hover .kind i{background:var(--accent);transform:scale(1.5)}
+}
+@media (max-width:760px){
+  .proj .kind,.proj-main,.proj .tags{grid-column:1 / -1;grid-row:auto}
+  .proj .tags{justify-content:flex-start}
+  .proj{gap:12px}
+}
+
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.steps{grid-column:4 / -1;list-style:none;margin:0;padding:0 0 0 36px;position:relative;display:grid;gap:clamp(36px,6vh,56px)}
+.steps::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.steps::after{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--accent);transform-origin:50% 0;transform:scaleY(var(--p,0))}
+.step{position:relative;display:grid;grid-template-columns:120px 1fr;gap:24px}
+.step::before{content:"";position:absolute;left:-36px;top:7px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:1px solid var(--line);transition:border-color .6s var(--ease),background .6s var(--ease)}
+.step.lit::before{border-color:var(--accent);background:var(--accent)}
+.step.next::before{background:var(--bg)}
+.step.next.lit::before{background:var(--bg);box-shadow:0 0 0 4px var(--accent-soft)}
+.step .mono{padding-top:3px}
+.step h3{margin:0 0 6px;font-family:var(--display);font-weight:500;font-size:clamp(20px,2vw,24px);letter-spacing:-.01em;line-height:1.25}
+.step p{margin:0;color:var(--ink-2);max-width:56ch}
+.step .soon{display:inline-block;margin-left:8px;font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+@media (max-width:760px){.steps{grid-column:1 / -1}.step{grid-template-columns:1fr;gap:4px}}
+
+/* contact */
+.contact{padding-block:clamp(88px,15vh,170px)}
+.contact h2{margin:0;font-family:var(--display);font-weight:500;font-size:clamp(2.6rem,7.5vw,6.4rem);
+  line-height:.98;letter-spacing:-.035em;text-wrap:balance;font-variation-settings:'wdth' 90}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;margin-top:clamp(36px,6vh,56px)}
+.email{font-family:var(--display);font-size:clamp(18px,2.4vw,28px);font-weight:400;letter-spacing:-.01em;
+  user-select:all;word-break:break-all;border-bottom:1px solid var(--line);padding-bottom:4px}
+.btn{appearance:none;border:0;cursor:pointer;font:500 14px/1 var(--body);display:inline-flex;align-items:center;gap:10px;
+  background:var(--ink);color:var(--bg);padding:16px 22px;border-radius:999px;min-height:48px;
+  transition:transform .5s var(--ease-out),background .3s var(--ease);will-change:transform}
+.btn:hover{background:var(--accent)}
+.btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn .label{display:inline-grid}
+.btn .label > span{grid-area:1/1;transition:transform .45s var(--ease-out),opacity .3s var(--ease)}
+.btn .label .done{transform:translateY(100%);opacity:0}
+.btn.copied .label .idle{transform:translateY(-100%);opacity:0}
+.btn.copied .label .done{transform:none;opacity:1}
+
+footer{border-top:1px solid var(--line);padding-block:28px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js [data-reveal]{opacity:1;transform:none}
+  .js .mask > span{transform:none}
+  .proj::after{transform:scaleX(1)}
+}
+</style>
+
+<div class="progress" aria-hidden="true"><i id="bar"></i></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Về đầu trang"><span class="dot"></span>Hải Anh</a>
+    <nav aria-label="Điều hướng chính">
+      <ul class="links">
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#work">Dự án</a></li>
+        <li><a href="#journey">Hành trình</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <div class="hero-top fade-up" style="--dl:60ms">
+      <span class="mono">AI &amp; Data Science · Automation</span>
+      <span class="status"><span class="pulse" aria-hidden="true"></span>Đang nhận dự án automation</span>
+    </div>
+
+    <h1 class="name intro" id="name" aria-label="Phạm Hải Anh">
+      <span class="row" data-text="Phạm"></span>
+      <span class="row" data-text="Hải Anh"></span>
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="lede fade-up" style="--dl:950ms">Sinh viên năm hai ngành Công nghệ thông tin, chuyên ngành <strong>AI &amp; Data Science</strong>. Tôi dựng các quy trình tự động bằng <strong>n8n, Make</strong> và mô hình ngôn ngữ, để những việc lặp đi lặp lại tự chạy.</p>
+      <div class="hero-meta fade-up" style="--dl:1150ms">
+        <span class="clock" id="clock" aria-label="Giờ địa phương">Việt Nam · GMT+7</span>
+        <a class="scroll-cue" href="#about"><span class="stem" aria-hidden="true"></span>Cuộn xuống</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head" data-reveal-group>
+        <span class="mono" data-reveal>Giới thiệu</span>
+        <h2><span class="mask"><span>Để máy làm việc lặp lại,</span></span><span class="mask"><span>người làm việc <em>cần suy nghĩ</em>.</span></span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p data-reveal>Tôi đặc biệt tin vào automation. Một tin nhắn cần trả lời, một khách hàng tiềm năng cần được chấm điểm, một dòng dữ liệu cần chuyển sang bảng khác. Những việc như vậy nên tự chạy.</p>
+          <p data-reveal style="--d:1">Hiện tại tôi vừa học vừa làm freelance, chủ yếu là workflow n8n và Make có tích hợp AI cho doanh nghiệp nhỏ. Nền tảng Data Science giúp tôi không chỉ nối các công cụ lại với nhau, mà còn hiểu dữ liệu chạy qua chúng.</p>
+        </div>
+        <dl class="facts">
+          <div data-reveal style="--d:1"><dt>Đang học</dt><dd>Năm 2, CNTT · AI Data Science</dd></div>
+          <div data-reveal style="--d:2"><dt>Tập trung</dt><dd>n8n, Make, Zapier, tích hợp LLM</dd></div>
+          <div data-reveal style="--d:3"><dt>Công cụ</dt><dd>Python, VS Code</dd></div>
+          <div data-reveal style="--d:4"><dt>Làm việc qua</dt><dd>Upwork · dự án trực tiếp</dd></div>
+        </dl>
+      </div>
+
+      <div class="flow-wrap" data-reveal>
+        <div class="flow-cap">
+          <span class="mono">Một workflow tôi hay dựng</span>
+          <span class="mono">Trigger → AI → Dữ liệu → Hành động</span>
+        </div>
+        <div class="flow" id="flow" role="img" aria-label="Sơ đồ workflow: tin nhắn mới đến, AI hiểu ý định và chấm điểm, dữ liệu được ghi vào Notion hoặc Google Sheets, rồi hệ thống trả lời khách và báo cho chủ shop.">
+          <div class="node n1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>
+            <b>Trigger</b><span>Tin nhắn mới trên Fanpage</span>
+          </div>
+          <div class="wire w1"></div>
+          <div class="node n2">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 12h4"/></svg>
+            <b>AI</b><span>Hiểu ý định, chấm điểm khách</span>
+          </div>
+          <div class="wire w2"></div>
+          <div class="node n3">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>
+            <b>Dữ liệu</b><span>Ghi vào Notion hoặc Sheets</span>
+          </div>
+          <div class="wire w3"></div>
+          <div class="node n4">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg>
+            <b>Hành động</b><span>Trả lời khách, báo chủ shop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono" data-reveal>Dự án</span>
+        <h2><span class="mask"><span>Những thứ tôi đang</span></span><span class="mask"><span>xây và <em>thử nghiệm</em>.</span></span></h2>
+      </div>
+      <ul class="projects">
+        <li class="proj" data-reveal>
+          <span class="kind mono"><i></i>Đồ án · AI</span>
+          <div class="proj-main">
+            <h3>Hệ thống chấm điểm lead</h3>
+            <p>Bài tập lớn môn Trí tuệ nhân tạo. Thu thập dữ liệu khách hàng tiềm năng bằng scraping, rồi dùng mô hình học máy để xếp hạng ai đáng liên hệ trước.</p>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Scraping</span><span class="tag">ML</span></div>
+        </li>
+        <li class="proj" data-reveal style="--d:1">
+          <span class="kind mono"><i></i>Dịch vụ</span>
+          <div class="proj-main">
+            <h3>Chatbot inbox cho spa</h3>
+            <p>Trả lời tin nhắn Fanpage tự động cho spa, tiệm nail và phòng khám nha khoa: báo giá, tư vấn dịch vụ, nhận lịch hẹn.</p>
+          </div>
+          <div class="tags"><span class="tag">n8n</span><span class="tag">LLM</span><span class="tag">Messenger</span></div>
+        </li>
+        <li class="proj" data-reveal style="--d:2">
+          <span class="kind mono"><i></i>Sản phẩm cá nhân</span>
+          <div class="proj-main">
+            <h3>App luyện nói tiếng Anh</h3>
+            <p>Trò chuyện với AI để luyện giao tiếp hằng ngày, có bản desktop và bản Android, tối ưu để chạy tiết kiệm.</p>
+          </div>
+          <div class="tags"><span class="tag">LLM</span><span class="tag">Desktop</span><span class="tag">Android</span></div>
+        </li>
+        <li class="proj" data-reveal style="--d:3">
+          <span class="kind mono"><i></i>Template</span>
+          <div class="proj-main">
+            <h3>Notion CRM + AI Lead Scoring</h3>
+            <p>Template n8n đóng gói sẵn: khách mới vào Notion, AI chấm điểm và gắn nhãn ưu tiên. Phát hành trên Gumroad.</p>
+          </div>
+          <div class="tags"><span class="tag">n8n</span><span class="tag">Notion</span><span class="tag">Gumroad</span></div>
+        </li>
+        <li class="proj" data-reveal style="--d:4">
+          <span class="kind mono"><i></i>Sáng tạo</span>
+          <div class="proj-main">
+            <h3>Video AI từ truyện</h3>
+            <p>Chuyển thể tiểu thuyết và truyện mạng thành loạt video AI, với nhiều phong cách từ chân thực đến hoạt hình.</p>
+          </div>
+          <div class="tags"><span class="tag">AI video</span><span class="tag">Storytelling</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="journey">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="mono" data-reveal>Hành trình</span>
+        <h2><span class="mask"><span>Bắt đầu nhỏ,</span></span><span class="mask"><span>đi <em>đều</em>.</span></span></h2>
+      </div>
+      <div class="journey">
+        <ol class="steps" id="steps">
+          <li class="step" data-reveal>
+            <span class="mono">Bước 01</span>
+            <div><h3>Một chiếc laptop i3</h3><p>Những năm đầu học lập trình trên máy i3, 4GB RAM. Máy yếu, nhưng đủ để bắt đầu.</p></div>
+          </li>
+          <li class="step" data-reveal>
+            <span class="mono">Bước 02</span>
+            <div><h3>Chọn AI &amp; Data Science</h3><p>Học cách làm việc với dữ liệu và mô hình, nền móng cho mọi thứ phía sau.</p></div>
+          </li>
+          <li class="step" data-reveal>
+            <span class="mono">Bước 03</span>
+            <div><h3>Đi theo automation</h3><p>Học n8n, Make, Zapier và cách nối chúng với các mô hình ngôn ngữ. Dựng demo thật cho những bài toán thật.</p></div>
+          </li>
+          <li class="step next" data-reveal>
+            <span class="mono">Bước 04</span>
+            <div><h3>Dự án đầu tiên trên Upwork<span class="soon">Đang hướng tới</span></h3><p>Mang những workflow đã dựng đến với khách hàng quốc tế.</p></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <span class="mono" data-reveal>Liên hệ</span>
+      <h2 style="margin-top:20px"><span class="mask"><span>Có việc gì đang</span></span><span class="mask"><span>lặp đi lặp lại?</span></span><span class="mask"><span><em>Hãy nói với tôi.</em></span></span></h2>
+      <div class="contact-row" data-reveal style="--d:2">
+        <span class="email" id="email">phamanh18102006@gmail.com</span>
+        <button class="btn" id="copy" type="button" aria-live="polite">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg>
+          <span class="label"><span class="idle">Chép email</span><span class="done">Đã chép</span></span>
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Phạm Hải Anh</span>
+    <span>Làm bằng tay, chạy bằng automation.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Split hero name into letters
+  var i = 0, letters = [];
+  document.querySelectorAll('#name .row').forEach(function(row){
+    Array.from(row.dataset.text).forEach(function(c){
+      var s = document.createElement('span');
+      s.className = 'ch' + (c === ' ' ? ' sp' : '');
+      s.textContent = c === ' ' ? ' ' : c;
+      s.setAttribute('aria-hidden','true');
+      s.style.setProperty('--i', i++);
+      row.appendChild(s);
+      if (c !== ' ') letters.push(s);
+    });
+  });
+
+  // Live clock (Vietnam)
+  var clock = document.getElementById('clock');
+  function tick(){
+    try{
+      var t = new Intl.DateTimeFormat('vi-VN',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Ho_Chi_Minh',hour12:false}).format(new Date());
+      clock.textContent = 'Việt Nam · ' + t + ' GMT+7';
+    }catch(e){}
+  }
+  tick(); setInterval(tick, 15000);
+
+  // Scroll reveals
+  root.classList.add('js');
+  var targets = document.querySelectorAll('[data-reveal], .sec-head, .contact h2');
+  if (reduce || !('IntersectionObserver' in window)){
+    targets.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.12});
+    targets.forEach(function(el){ io.observe(el); });
+  }
+
+  // Workflow animation only while visible
+  var flow = document.getElementById('flow');
+  if (!reduce && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ flow.classList.toggle('run', e.isIntersecting); });
+    }).observe(flow);
+  }
+
+  // Scroll: progress bar, nav border, hero parallax, journey line
+  var bar = document.getElementById('bar'), nav = document.getElementById('nav');
+  var name = document.getElementById('name');
+  var steps = document.getElementById('steps');
+  var stepEls = steps.querySelectorAll('.step');
+  var ticking = false;
+  function onScroll(){
+    var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
+    nav.classList.toggle('scrolled', y > 8);
+    if (!reduce){
+      var p = Math.min(y / (innerHeight * 0.9), 1);
+      name.style.transform = 'translate3d(0,' + (y * 0.12) + 'px,0)';
+      name.style.opacity = 1 - p * 0.55;
+    }
+    var r = steps.getBoundingClientRect();
+    var prog = Math.min(Math.max((innerHeight * 0.65 - r.top) / r.height, 0), 1);
+    steps.style.setProperty('--p', prog);
+    stepEls.forEach(function(s){
+      var sr = s.getBoundingClientRect();
+      s.classList.toggle('lit', sr.top + 10 < innerHeight * 0.65);
+    });
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Hero: letters swell toward the cursor (variable width + weight)
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!reduce && fine){
+    setTimeout(function(){ name.classList.remove('intro'); }, 1900);
+    var mx = -9999, my = -9999, raf = null;
+    function paint(){
+      raf = null;
+      letters.forEach(function(s){
+        var b = s.getBoundingClientRect();
+        var dx = mx - (b.left + b.width / 2), dy = my - (b.top + b.height / 2);
+        var t = Math.max(0, 1 - Math.sqrt(dx * dx + dy * dy) / 280);
+        t = t * t * (3 - 2 * t);
+        s.style.setProperty('--w', (100 + 22 * t).toFixed(1));
+        s.style.setProperty('--g', (560 + 300 * t).toFixed(0));
+      });
+    }
+    var hero = document.querySelector('.hero');
+    hero.addEventListener('pointermove', function(e){ mx = e.clientX; my = e.clientY; if (!raf) raf = requestAnimationFrame(paint); });
+    hero.addEventListener('pointerleave', function(){ mx = my = -9999; if (!raf) raf = requestAnimationFrame(paint); });
+  }
+
+  // Magnetic copy button
+  var btn = document.getElementById('copy');
+  if (!reduce && fine){
+    btn.addEventListener('pointermove', function(e){
+      var b = btn.getBoundingClientRect();
+      var x = (e.clientX - b.left - b.width / 2) * 0.25, y = (e.clientY - b.top - b.height / 2) * 0.35;
+      btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    });
+    btn.addEventListener('pointerleave', function(){ btn.style.transform = ''; });
+  }
+
+  // Copy email
+  var email = document.getElementById('email');
+  function selectEmail(){
+    var r = document.createRange(); r.selectNodeContents(email);
+    var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+  }
+  btn.addEventListener('click', function(){
+    var done = function(){ btn.classList.add('copied'); setTimeout(function(){ btn.classList.remove('copied'); }, 2000); };
+    try{
+      navigator.clipboard.writeText(email.textContent.trim()).then(done, function(){ selectEmail(); });
+    }catch(e){ selectEmail(); }
+  });
+})();
+</script>
+
+</body></html>
